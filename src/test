@@ -1,0 +1,188 @@
+define $"fragmentShader( readonly struct VertexOutput& struct FragmentOutput& )" ([fragment] [in]readonly struct VertexOutput& [out]struct FragmentOutput& -> void) {
+declarations: 
+  jump @entry
+entry: [idom: declarations] 
+  return void
+}
+
+define $"vertexShader( readonly struct VertexInput& struct VertexOutput& )" ([vertex] [in]readonly struct VertexInput& [out]struct VertexOutput& -> void) {
+declarations: 
+  [float&] $g1 = alloca float
+  jump @entry
+entry: [idom: declarations] 
+  store constant [float]1.0 in $g1
+  [float] $g2 = load from $g1
+  [bool] $g3 = ufgt $g2 constant [float]0.0
+  branch $g3 then @ifThen else @ifContinue
+ifThen: [idom: entry] [domFr: ifContinue ]
+  [float4&] $g5 = getElementReference $output [0]
+  [readonly float4&] $g6 = getElementReference $input [1]
+  [float4] $g7 = load from $g6
+  store $g7 in $g5
+  jump @ifContinue
+ifContinue: [idom: entry] 
+  [void] $g9 = cal define $"simpleWhile( )" ([normal] -> void) {
+declarations: 
+  jump @entry
+entry: [idom: declarations] 
+  branch constant [bool]true then @ifThen else @ifContinue
+ifThen: [idom: entry] 
+  return void
+ifContinue: [idom: entry] 
+  jump @whileCond
+whileCond: [idom: ifContinue] [domFr: whileCond ]
+  [bool] $g4 = igt constant [int]1 constant [int]0
+  branch $g4 then @whileBody else @whileEnd
+whileBody: [idom: whileCond] [domFr: whileCond whileEnd ]
+  branch constant [bool]true then @ifThen else @ifContinue
+whileEnd: [idom: whileCond] 
+  return void
+ifThen: [idom: whileBody] [domFr: whileEnd ]
+  jump @whileEnd
+ifContinue: [idom: whileBody] [domFr: whileCond ]
+  jump @whileCond
+whileCond: [idom: ifContinue] [domFr: whileCond whileCond ]
+  branch constant [bool]true then @whileBody else @whileEnd
+whileBody: [idom: whileCond] [domFr: whileCond ]
+  branch constant [bool]false then @ifThen else @ifContinue
+whileEnd: [idom: whileCond] [domFr: whileCond ]
+  branch constant [bool]false then @ifThen else @ifContinue
+ifThen: [idom: whileBody] 
+  return void
+ifContinue: [idom: whileBody] [domFr: whileCond ]
+  branch constant [bool]true then @ifThen else @ifContinue
+ifThen: [idom: ifContinue] [domFr: whileCond ]
+  jump @whileCond
+ifContinue: [idom: ifContinue] [domFr: whileCond ]
+  jump @whileCond
+ifThen: [idom: whileEnd] [domFr: whileCond ]
+  jump @whileCond
+ifContinue: [idom: whileEnd] [domFr: whileCond ]
+  jump @whileCond
+}
+ ()
+  return void
+}
+
+define $"simpleWhile( )" ([normal] -> void) {
+declarations: 
+  jump @entry
+entry: [idom: declarations] 
+  branch constant [bool]true then @ifThen else @ifContinue
+ifThen: [idom: entry] 
+  return void
+ifContinue: [idom: entry] 
+  jump @whileCond
+whileCond: [idom: ifContinue] [domFr: whileCond ]
+  [bool] $g4 = igt constant [int]1 constant [int]0
+  branch $g4 then @whileBody else @whileEnd
+whileBody: [idom: whileCond] [domFr: whileCond whileEnd ]
+  branch constant [bool]true then @ifThen else @ifContinue
+whileEnd: [idom: whileCond] 
+  return void
+ifThen: [idom: whileBody] [domFr: whileEnd ]
+  jump @whileEnd
+ifContinue: [idom: whileBody] [domFr: whileCond ]
+  jump @whileCond
+whileCond: [idom: ifContinue] [domFr: whileCond whileCond ]
+  branch constant [bool]true then @whileBody else @whileEnd
+whileBody: [idom: whileCond] [domFr: whileCond ]
+  branch constant [bool]false then @ifThen else @ifContinue
+whileEnd: [idom: whileCond] [domFr: whileCond ]
+  branch constant [bool]false then @ifThen else @ifContinue
+ifThen: [idom: whileBody] 
+  return void
+ifContinue: [idom: whileBody] [domFr: whileCond ]
+  branch constant [bool]true then @ifThen else @ifContinue
+ifThen: [idom: ifContinue] [domFr: whileCond ]
+  jump @whileCond
+ifContinue: [idom: ifContinue] [domFr: whileCond ]
+  jump @whileCond
+ifThen: [idom: whileEnd] [domFr: whileCond ]
+  jump @whileCond
+ifContinue: [idom: whileEnd] [domFr: whileCond ]
+  jump @whileCond
+}
+
+// fragmentShader( readonly struct VertexOutput& struct FragmentOutput& )
+in vec4 input_color;
+out vec4 output_color;
+
+void main() {
+  return;
+}
+
+// vertexShader( readonly struct VertexInput& struct VertexOutput& )
+in vec3 input_position;
+in vec4 input_color;
+out vec4 output_color;
+
+void main() {
+  float gv1;
+  gv1 = 1.0;
+  if ((gv1 > 0.0))
+  {
+    output_color = input_color;
+    return;
+  }
+  else
+  {
+    output_color = input_color;
+    return;
+  }
+}
+void gf1() {
+  if (true)
+  {
+    return;
+  }
+  else
+  {
+    for(;;) {
+      if ((1 > 0))
+      {
+        if (true)
+        {
+          return;
+        }
+        else
+        {
+          for(;;) {
+            if (true)
+            {
+              if (false)
+              {
+                return;
+              }
+              else
+              {
+                if (true)
+                {
+                  continue;
+                }
+                else
+                {
+                  continue;
+                }
+              }
+            }
+            else
+            {
+              if (false)
+              {
+              }
+              else
+              {
+              }
+            }
+          }
+        }
+      }
+      else
+      {
+        return;
+      }
+    }
+  }
+}
+
